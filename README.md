@@ -1,5 +1,7 @@
 # Krytsia — VPP + Energy Management Platform
 
+[![CI](https://github.com/basisabp1984/gecko-vpp-rebuild/actions/workflows/ci.yml/badge.svg)](https://github.com/basisabp1984/gecko-vpp-rebuild/actions/workflows/ci.yml)
+
 > Інтелектуальний шар для критичної енергетичної інфраструктури. Україна · ЄС.
 
 **Virtual Power Plant + Energy Management Platform для українського енергоринку. AI-агенти, прогнозування, диспетчеризація, ринкова інтеграція.**
@@ -80,6 +82,26 @@ Synthetic. 30 days `2026-04-23 → 2026-05-23`. Portfolio: 8–12 assets totalli
 ## Status
 
 This is **v2 rebuild** (Krytsia rebrand of the v1 GECKO VPP demo). v1 lives at `vpp.radai-1984.dev`. See `phase-2-solution/`, `phase-3-architecture/` for the design trail.
+
+## Documentation
+
+- [ARCHITECTURE.md](ARCHITECTURE.md) — system overview, three sub-systems, data model, API, AI agents (10-min read)
+- [DEPLOYMENT.md](DEPLOYMENT.md) — how to deploy from scratch (Hetzner + Vercel + Cloudflare)
+- [CONTRIBUTING.md](CONTRIBUTING.md) — local dev setup, running tests, code style
+- [PRODUCT_BRIEF.md](PRODUCT_BRIEF.md) — frozen v0.4 product spec (31 acceptance criteria)
+- [BRIEF_V05_AMENDMENT.md](BRIEF_V05_AMENDMENT.md) — last visual + i18n iteration
+- [phase-3-architecture/ARCHITECTURE.md](phase-3-architecture/ARCHITECTURE.md) — deep dive (~38 pages, full FMEA, all tables and endpoints)
+
+## Tests
+
+Backend tests run on every push via GitHub Actions (see `.github/workflows/ci.yml`):
+
+```bash
+cd apps/api
+pytest -v
+```
+
+Tests require a running Postgres on port 5433 (see `docker-compose.yml`).
 
 ## License
 
