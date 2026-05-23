@@ -6,16 +6,33 @@
 
 ---
 
-## State of the world
+## State of the world — ALL PHASES COMPLETE ✅
 
 | Phase (bible) | What | Status |
 |---|---|---|
-| 1. Understanding | PDF → brief | DONE (PRODUCT_BRIEF.md v0.4 frozen) |
-| 2. Solution | Research synthesis + amendments | DONE (RESEARCH_FINDINGS.md v0.1, BRIEF_AMENDMENTS closed, brief v0.4 incorporates all) |
-| 3. Architecture | Pipeline: synthesis → high-level → detailed → specialists | IN PROGRESS — Stage 1 (synthesis + high-level) launching |
-| 4. Implementation | Code | NOT STARTED |
-| 5. Verification | Tests + smoke + acceptance walk | NOT STARTED |
-| 6. Operation | Deploy to gecko.radai-1984.dev + open GitHub repo | NOT STARTED |
+| 1. Understanding | PDF → brief | ✅ DONE (PRODUCT_BRIEF.md v0.4 frozen) |
+| 2. Solution | Research synthesis + amendments | ✅ DONE (3 research files + amendments closed) |
+| 3. Architecture | HLA → ARCHITECTURE.md (35p) → 9 specialist instruction files | ✅ DONE |
+| 4. Implementation | 29 frontend routes + 41 API endpoints + Postgres + SDKs + 4 AI agents (20 intents) | ✅ DONE |
+| 5. Verification | 28/28 routes 200, Ukrainian content, agents answer from real DB | ✅ DONE |
+| 6. Operation | Live on production with custom domain | ✅ DONE |
+
+## 🚀 LIVE URLs (production)
+
+- **Frontend:** https://gecko.radai-1984.dev/
+- **Backend API:** https://api.gecko.radai-1984.dev/api/v1/healthz
+- **OpenAPI spec:** https://api.gecko.radai-1984.dev/openapi.json (36 paths)
+- **OpenAPI explorer (Scalar UI):** https://gecko.radai-1984.dev/developer/api/explorer
+- **Source code:** https://github.com/basisabp1984/gecko-vpp-rebuild (public)
+- **v1 (reference, untouched):** https://vpp.radai-1984.dev/
+
+## Demo tenants (no auth)
+
+| Tenant UUID | Segment | Display name |
+|---|---|---|
+| `11111111-1111-1111-1111-111111111111` | producer | ТОВ «Поляна Енерджі» |
+| `22222222-2222-2222-2222-222222222222` | c-i | ПАТ «Дніпровий Завод» |
+| `33333333-3333-3333-3333-333333333333` | storage | ТОВ «Запоріжжя Сторідж» |
 
 ---
 
