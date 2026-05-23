@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { AppShell } from "@/components/AppShell";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,6 +61,7 @@ export default async function RootLayout({
             <AppShell>{children}</AppShell>
           </Providers>
         </NextIntlClientProvider>
+        {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
       </body>
     </html>
   );
