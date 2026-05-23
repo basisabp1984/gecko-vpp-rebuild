@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useTranslations } from "next-intl";
 import { KrytsiaLogo } from "./KrytsiaLogo";
 import { TenantSwitcher } from "./TenantSwitcher";
 import { PersonaSwitcher } from "./PersonaSwitcher";
@@ -9,8 +10,10 @@ import { AlertsBell } from "./AlertsBell";
 import { AgentChat } from "./AgentChat";
 import { VoiceButton } from "./VoiceButton";
 import { ThemeToggle } from "./ThemeToggle";
+import { LocaleSwitcher } from "./LocaleSwitcher";
 
 export function AppShell({ children }: { children: ReactNode }) {
+  const t = useTranslations("footer");
   return (
     <div className="min-h-screen flex flex-col">
       <header className="sticky top-0 z-40 border-b border-border bg-bg-card/90 backdrop-blur">
@@ -22,6 +25,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <CommandPaletteTrigger />
           <TenantSwitcher />
           <div className="flex items-center gap-1">
+            <LocaleSwitcher />
             <AlertsBell />
             <VoiceButton />
             <ThemeToggle />
@@ -38,15 +42,21 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <footer className="border-t border-border bg-bg-card/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-text-muted">
-          <span>© 2026 Krytsia. Перша VPP + EMS платформа з AI-агентами в Україні.</span>
+          <span>{t("tagline")}</span>
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/basisabp1984/agentic-dev-framework"
+              href="https://github.com/basisabp1984/gecko-vpp-rebuild"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-accent-deep transition-colors"
             >
-              GitHub
+              {t("github")}
+            </a>
+            <a
+              href="/developer"
+              className="hover:text-accent-deep transition-colors"
+            >
+              {t("developers")}
             </a>
             <a
               href="https://vpp.radai-1984.dev"
@@ -54,7 +64,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               rel="noopener noreferrer"
               className="hover:text-accent-deep transition-colors"
             >
-              v1 продакшен
+              {t("v1")}
             </a>
           </div>
         </div>

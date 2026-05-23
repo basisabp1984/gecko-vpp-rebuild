@@ -1,9 +1,10 @@
 "use client";
 
 import { ArrowRight, Sparkles, Mic } from "lucide-react";
+import { useTranslations } from "next-intl";
 import {
-  PERSONA_META,
   getAgentChatBridge,
+  usePersonaCopy,
   type PersonaCode,
 } from "./AgentChat";
 
@@ -12,8 +13,9 @@ interface PersonaAIHelperProps {
 }
 
 export function PersonaAIHelper({ persona }: PersonaAIHelperProps) {
-  const p = PERSONA_META[persona];
+  const p = usePersonaCopy(persona);
   const Icon = p.icon;
+  const t = useTranslations("personaAIHelper");
 
   function handleAsk(prefill?: string) {
     const bridge = getAgentChatBridge();
@@ -22,7 +24,7 @@ export function PersonaAIHelper({ persona }: PersonaAIHelperProps) {
 
   return (
     <section
-      aria-label={`AI помічник — ${p.display}`}
+      aria-label={`${t("badge")} — ${p.display}`}
       className="relative rounded-2xl border border-accent/30 bg-bg-card p-5 sm:p-6 shadow-card overflow-hidden"
     >
       <div
@@ -37,16 +39,13 @@ export function PersonaAIHelper({ persona }: PersonaAIHelperProps) {
 
         <div className="flex-1 min-w-0">
           <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent-subtle text-accent-deep text-xs font-semibold mb-1.5">
-            <Sparkles size={11} /> AI помічник
+            <Sparkles size={11} /> {t("badge")}
           </div>
           <h2 className="text-lg sm:text-xl font-bold text-text-heading leading-tight">
             {p.display}{" "}
             <span className="text-text-muted font-normal">— {p.tagline}</span>
           </h2>
-          <p className="mt-1 text-sm text-text-muted">
-            Запитайте українською або голосом. Відповіді з посиланнями на ваші
-            живі дані.
-          </p>
+          <p className="mt-1 text-sm text-text-muted">{t("description")}</p>
         </div>
 
         <button
@@ -54,7 +53,7 @@ export function PersonaAIHelper({ persona }: PersonaAIHelperProps) {
           onClick={() => handleAsk(p.samples[0])}
           className="hidden md:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-accent hover:bg-accent-deep text-text-inverse font-semibold transition-colors shadow-elevated"
         >
-          Запитати <ArrowRight size={16} />
+          {t("askButton")} <ArrowRight size={16} />
         </button>
       </div>
 
@@ -76,7 +75,7 @@ export function PersonaAIHelper({ persona }: PersonaAIHelperProps) {
           onClick={() => handleAsk(p.samples[0])}
           className="md:hidden inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-accent hover:bg-accent-deep text-text-inverse text-sm font-semibold transition-colors ml-auto"
         >
-          Запитати <ArrowRight size={14} />
+          {t("askButton")} <ArrowRight size={14} />
         </button>
       </div>
     </section>

@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "title": "Krytsia — AI-first VPP and EMS platform",
+    "description": "The first VPP + EMS platform with AI agents in Ukraine. Four expert AI agents inside your cabinet: forecasting, market, dispatch, battery optimisation. Live integration with day-ahead, intraday and balancing markets."
+  },
+  "nav": {
+    "overview": "Overview",
+    "producer": "Producer",
+    "ci": "C&I",
+    "storage": "Storage",
+    "admin": "Admin"
+  },
+  "hero": {
+    "eyebrow": "AI-first platform · VPP + EMS",
+    "headlinePrefix": "We make complex energy",
+    "headlineHighlight": "manageable",
+    "subline": "Krytsia — Virtual Power Plant + Energy Management Platform for Ukraine. Four AI expert agents inside your cabinet: forecasting, market, dispatch, battery optimisation.",
+    "primaryCta": "Try a cabinet",
+    "secondaryCta": "See AI agents"
+  },
+  "agentShowcase": {
+    "eyebrow": "AI agents by Krytsia · only here",
+    "headlinePrefix": "Four experts —",
+    "headlineHighlight": "one window",
+    "subline": "No other VPP platform in Ukraine offers this. Each agent sees the same live data as your cabinet — ask in your language or by voice and get an answer linked to the exact rows in the database.",
+    "askButton": "Ask the agent"
+  },
+  "personaAIHelper": {
+    "badge": "AI helper",
+    "description": "Ask in your language or by voice. Answers link to your live data.",
+    "askButton": "Ask"
+  },
+  "scenarios": {
+    "heading": "Pick your scenario",
+    "subline": "One product — three cabinets for three market roles. Live data, multi-tenant via X-Tenant-Id header.",
+    "producer": {
+      "title": "I'm a producer",
+      "description": "Solar, wind, gas-engine or hybrid plant. Forecasting, day-ahead/intraday trading, optimisation against caps and imbalances.",
+      "cta": "Producer cabinet"
+    },
+    "ci": {
+      "title": "I'm a business (C&I)",
+      "description": "Factory, agro-holding, retail. Minimise your bill: tariff plans, load shifting, group procurement, demand-response services.",
+      "cta": "Active-consumer cabinet"
+    },
+    "storage": {
+      "title": "I'm a storage owner",
+      "description": "Electrochemical storage as an asset. Arbitrage, balancing market, system services. We'll find your weekly strategy with the best IRR.",
+      "cta": "Storage cabinet"
+    }
+  },
+  "secondaryLinks": {
+    "admin": "Admin console"
+  },
+  "footer": {
+    "tagline": "© 2026 Krytsia. The first VPP + EMS platform with AI agents in Ukraine.",
+    "github": "GitHub",
+    "v1": "v1 production",
+    "developers": "API for developers"
+  },
+  "personas": {
+    "dispatcher_analyst": {
+      "display": "Dispatch analyst",
+      "short": "Dispatch",
+      "tagline": "Production, imbalances, maintenance",
+      "samples": [
+        "What's happening with production today?",
+        "Explain the imbalance",
+        "When is the next maintenance?"
+      ]
+    },
+    "market_analyst": {
+      "display": "Market analyst",
+      "short": "Market",
+      "tagline": "Bids, revenue, arbitrage",
+      "samples": [
+        "What's the bid for tomorrow?",
+        "Break revenue down by channel",
+        "When is the arbitrage window?"
+      ]
+    },
+    "energy_advisor": {
+      "display": "Energy advisor",
+      "short": "Advisor",
+      "tagline": "Consumption, tariffs, scenarios",
+      "samples": [
+        "How much of my own generation did I consume?",
+        "Blackout scenario",
+        "Tariff impact on the bill"
+      ]
+    },
+    "battery_coach": {
+      "display": "Battery coach",
+      "short": "Battery",
+      "tagline": "SOC, cycles, charge/discharge",
+      "samples": [
+        "When should I charge the battery?",
+        "What's the current SOC?",
+        "Check the battery cycles"
+      ]
+    }
+  },
+  "agentChat": {
+    "drawerTitle": "Krytsia AI agent",
+    "selectAgentLabel": "Choose an agent",
+    "emptyPrompt": "I'll help you with analytics on real data. Examples:",
+    "placeholder": "Ask a question...",
+    "sending": "The agent is analysing...",
+    "errorPrefix": "[error]",
+    "errorUnknown": "Unknown error contacting the agent",
+    "voiceStart": "Voice input",
+    "voiceStop": "Stop recording",
+    "voiceUnavailable": "Voice is not available in your browser",
+    "submit": "Send"
+  },
+  "localeSwitcher": {
+    "label": "Language"
+  }
+}

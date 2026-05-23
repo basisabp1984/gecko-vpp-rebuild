@@ -2,43 +2,38 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Factory, Building2, Battery, Code2, ShieldCheck, Home } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Factory, Building2, Battery, ShieldCheck, Home } from "lucide-react";
 import clsx from "clsx";
 
 const PERSONAS: Array<{
   href: string;
-  label: string;
+  key: "overview" | "producer" | "ci" | "storage" | "admin";
   icon: React.ComponentType<{ size?: number; className?: string }>;
   match: (path: string) => boolean;
 }> = [
-  { href: "/", label: "Огляд", icon: Home, match: (p) => p === "/" },
+  { href: "/", key: "overview", icon: Home, match: (p) => p === "/" },
   {
     href: "/producer",
-    label: "Виробник",
+    key: "producer",
     icon: Factory,
     match: (p) => p.startsWith("/producer"),
   },
   {
     href: "/c-i",
-    label: "C&I",
+    key: "ci",
     icon: Building2,
     match: (p) => p.startsWith("/c-i"),
   },
   {
     href: "/storage",
-    label: "УЗЕ",
+    key: "storage",
     icon: Battery,
     match: (p) => p.startsWith("/storage"),
   },
   {
-    href: "/developer",
-    label: "Developer",
-    icon: Code2,
-    match: (p) => p.startsWith("/developer"),
-  },
-  {
     href: "/admin",
-    label: "Admin",
+    key: "admin",
     icon: ShieldCheck,
     match: (p) => p.startsWith("/admin"),
   },
@@ -46,6 +41,7 @@ const PERSONAS: Array<{
 
 export function PersonaSwitcher() {
   const pathname = usePathname() ?? "/";
+  const t = useTranslations("nav");
   return (
     <nav className="hidden md:flex items-center gap-1">
       {PERSONAS.map((p) => {
@@ -63,7 +59,7 @@ export function PersonaSwitcher() {
             )}
           >
             <Icon size={14} />
-            {p.label}
+            {t(p.key)}
           </Link>
         );
       })}

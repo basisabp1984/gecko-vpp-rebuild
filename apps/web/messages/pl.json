@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "title": "Krytsia — pierwsza platforma VPP i EMS oparta na AI",
+    "description": "Pierwsza platforma VPP + EMS z agentami AI na Ukrainie. Czterech eksperckich agentów AI w Twoim panelu: prognoza, rynek, dyspozycja, optymalizacja baterii. Integracja na żywo z rynkami day-ahead, intraday i bilansującym."
+  },
+  "nav": {
+    "overview": "Przegląd",
+    "producer": "Wytwórca",
+    "ci": "C&I",
+    "storage": "Magazyn",
+    "admin": "Admin"
+  },
+  "hero": {
+    "eyebrow": "Platforma AI-first · VPP + EMS",
+    "headlinePrefix": "Czynimy złożoną energetykę",
+    "headlineHighlight": "sterowalną",
+    "subline": "Krytsia — Virtual Power Plant + Energy Management Platform dla Ukrainy. Czterech eksperckich agentów AI w Twoim panelu: prognoza, rynek, dyspozycja, optymalizacja baterii.",
+    "primaryCta": "Wypróbuj panel",
+    "secondaryCta": "Zobacz agentów AI"
+  },
+  "agentShowcase": {
+    "eyebrow": "Agenci AI Krytsia · tylko u nas",
+    "headlinePrefix": "Czterech ekspertów —",
+    "headlineHighlight": "jedno okno",
+    "subline": "Żadna inna platforma VPP nie oferuje tego. Każdy agent widzi te same dane na żywo co Twój panel — zadaj pytanie po polsku albo głosem i otrzymaj odpowiedź z odnośnikami do konkretnych wierszy w bazie.",
+    "askButton": "Zapytaj agenta"
+  },
+  "personaAIHelper": {
+    "badge": "Pomocnik AI",
+    "description": "Zapytaj po polsku albo głosem. Odpowiedzi z odnośnikami do Twoich danych na żywo.",
+    "askButton": "Zapytaj"
+  },
+  "scenarios": {
+    "heading": "Wybierz swój scenariusz",
+    "subline": "Jeden produkt — trzy panele dla trzech ról na rynku. Dane na żywo, multi-tenant przez nagłówek X-Tenant-Id.",
+    "producer": {
+      "title": "Jestem wytwórcą",
+      "description": "Elektrownia słoneczna, wiatrowa, gazowa lub hybrydowa. Prognoza, handel na day-ahead/intraday, optymalizacja względem capów i niezbilansowań.",
+      "cta": "Panel wytwórcy"
+    },
+    "ci": {
+      "title": "Jestem firmą (C&I)",
+      "description": "Fabryka, agro, retail. Minimalizuj rachunek: plany taryfowe, przesuwanie obciążeń, zakupy grupowe, usługi DSR.",
+      "cta": "Panel aktywnego odbiorcy"
+    },
+    "storage": {
+      "title": "Jestem właścicielem magazynu",
+      "description": "Magazyn elektrochemiczny jako aktywo. Arbitraż, rynek bilansujący, usługi systemowe. Znajdziemy Ci tygodniową strategię z najlepszym IRR.",
+      "cta": "Panel magazynu"
+    }
+  },
+  "secondaryLinks": {
+    "admin": "Konsola admina"
+  },
+  "footer": {
+    "tagline": "© 2026 Krytsia. Pierwsza platforma VPP + EMS z agentami AI na Ukrainie.",
+    "github": "GitHub",
+    "v1": "Produkcja v1",
+    "developers": "API dla deweloperów"
+  },
+  "personas": {
+    "dispatcher_analyst": {
+      "display": "Analityk dyspozytorski",
+      "short": "Dyspozytor",
+      "tagline": "Produkcja, niezbilansowania, prace serwisowe",
+      "samples": [
+        "co dzisiaj z produkcją?",
+        "wyjaśnij niezbilansowanie",
+        "kiedy następne prace serwisowe?"
+      ]
+    },
+    "market_analyst": {
+      "display": "Analityk rynku",
+      "short": "Rynek",
+      "tagline": "Oferty, przychody, arbitraż",
+      "samples": [
+        "jaka oferta na jutro?",
+        "rozbij przychód na kanały",
+        "kiedy okno arbitrażu?"
+      ]
+    },
+    "energy_advisor": {
+      "display": "Doradca energetyczny",
+      "short": "Doradca",
+      "tagline": "Zużycie, taryfy, scenariusze",
+      "samples": [
+        "ile zużyłem własnej generacji?",
+        "scenariusz blackoutu",
+        "wpływ taryfy na rachunek"
+      ]
+    },
+    "battery_coach": {
+      "display": "Coach baterii",
+      "short": "Bateria",
+      "tagline": "SOC, cykle, ładowanie/rozładowanie",
+      "samples": [
+        "kiedy ładować baterię?",
+        "jaki obecny SOC?",
+        "sprawdź cykle baterii"
+      ]
+    }
+  },
+  "agentChat": {
+    "drawerTitle": "Agent AI Krytsia",
+    "selectAgentLabel": "Wybierz agenta",
+    "emptyPrompt": "Pomogę z analityką na żywych danych. Przykłady:",
+    "placeholder": "Zadaj pytanie...",
+    "sending": "Agent analizuje...",
+    "errorPrefix": "[błąd]",
+    "errorUnknown": "Nieznany błąd połączenia z agentem",
+    "voiceStart": "Wejście głosowe",
+    "voiceStop": "Zatrzymaj nagrywanie",
+    "voiceUnavailable": "Głos nie jest dostępny w Twojej przeglądarce",
+    "submit": "Wyślij"
+  },
+  "localeSwitcher": {
+    "label": "Język"
+  }
+}

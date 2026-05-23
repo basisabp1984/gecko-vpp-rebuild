@@ -1,33 +1,37 @@
+"use client";
+
 import Link from "next/link";
-import { Factory, Building2, Battery, Code2, ShieldCheck } from "lucide-react";
+import { Factory, Building2, Battery, ShieldCheck } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { ArchitectureDiagram } from "@/components/diagram/ArchitectureDiagram";
 import { ScenarioCard } from "@/components/ScenarioCard";
 import { AgentShowcase } from "@/components/AgentShowcase";
 import { HeroVideo } from "@/components/HeroVideo";
 
 export default function HomePage() {
+  const tHero = useTranslations("hero");
+  const tScenario = useTranslations("scenarios");
+  const tSecondary = useTranslations("secondaryLinks");
+
   return (
     <div className="flex flex-col gap-14">
       {/* Cinematic hero with drone-aerial video + AI-first headline */}
       <HeroVideo
         videoSrc="/hero/renewables-aerial-720.mp4"
         posterSrc="/hero/renewables-aerial-poster.jpg"
-        eyebrow="AI-перша платформа · VPP + EMS"
+        eyebrow={tHero("eyebrow")}
         headline={
           <>
-            Робимо складну енергетику{" "}
-            <span className="text-accent-light">керованою</span>.
+            {tHero("headlinePrefix")}{" "}
+            <span className="text-accent-light">
+              {tHero("headlineHighlight")}
+            </span>
+            .
           </>
         }
-        subline={
-          <>
-            Krytsia — Virtual Power Plant + Energy Management Platform для України.
-            Чотири фахівці-агенти на основі AI у вашому кабінеті: прогноз, ринок,
-            диспетчеризація, оптимізація батарей.
-          </>
-        }
-        primaryCta={{ href: "/producer", label: "Спробувати кабінет" }}
-        secondaryCta={{ href: "/developer", label: "Developer-портал" }}
+        subline={tHero("subline")}
+        primaryCta={{ href: "/producer", label: tHero("primaryCta") }}
+        secondaryCta={{ href: "#agents", label: tHero("secondaryCta") }}
       />
 
       {/* AI agents — the headline differentiator, raised to second screen */}
@@ -42,50 +46,34 @@ export default function HomePage() {
       <section>
         <div className="mb-4">
           <h2 className="text-2xl sm:text-3xl font-bold text-text-heading tracking-tight">
-            Оберіть свій сценарій
+            {tScenario("heading")}
           </h2>
           <p className="mt-1 text-sm sm:text-base text-text-muted max-w-2xl">
-            Один продукт — три кабінети під різні ролі на ринку. Дані живі,
-            мульти-тенант через <code className="text-xs font-mono px-1 py-0.5 rounded bg-bg-subtle">X-Tenant-Id</code>.
+            {tScenario("subline")}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <ScenarioCard
-            title="Я виробник"
+            title={tScenario("producer.title")}
             icon={<Factory size={20} />}
-            description={
-              <>
-                Сонячна, вітрова, газо-поршнева чи гібридна станція. Прогноз,
-                торгівля на ДД/РДН/ВДР, оптимізація проти кепа та небалансів.
-              </>
-            }
+            description={<>{tScenario("producer.description")}</>}
             href="/producer"
-            cta="Кабінет виробника"
+            cta={tScenario("producer.cta")}
             tone="accent"
           />
           <ScenarioCard
-            title="Я бізнес (C&I)"
+            title={tScenario("ci.title")}
             icon={<Building2 size={20} />}
-            description={
-              <>
-                Завод, агрохолдинг, ритейл. Мінімізуйте рахунок: тарифні плани,
-                перенесення навантажень, групова закупівля, DR-послуги.
-              </>
-            }
+            description={<>{tScenario("ci.description")}</>}
             href="/c-i"
-            cta="Кабінет активного споживача"
+            cta={tScenario("ci.cta")}
           />
           <ScenarioCard
-            title="Я УЗЕ-власник"
+            title={tScenario("storage.title")}
             icon={<Battery size={20} />}
-            description={
-              <>
-                Електрохімічне сховище як актив. Арбітраж, БР, послуги системі.
-                Знайдемо щотижневу стратегію з найкращим IRR.
-              </>
-            }
+            description={<>{tScenario("storage.description")}</>}
             href="/storage"
-            cta="Кабінет УЗЕ"
+            cta={tScenario("storage.cta")}
           />
         </div>
       </section>
@@ -93,16 +81,10 @@ export default function HomePage() {
       {/* Secondary links */}
       <section className="flex flex-wrap items-center justify-center gap-4 text-sm">
         <Link
-          href="/developer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-bg-card hover:border-accent transition-colors text-text-body"
-        >
-          <Code2 size={14} /> Developer-портал
-        </Link>
-        <Link
           href="/admin"
           className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-bg-card hover:border-accent transition-colors text-text-body"
         >
-          <ShieldCheck size={14} /> Адмін-консоль
+          <ShieldCheck size={14} /> {tSecondary("admin")}
         </Link>
       </section>
     </div>

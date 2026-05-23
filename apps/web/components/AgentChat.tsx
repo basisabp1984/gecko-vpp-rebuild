@@ -14,6 +14,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import {
   useCallback,
   useEffect,
@@ -63,7 +64,14 @@ interface ChatMessage {
   durationMs?: number;
 }
 
-interface PersonaMeta {
+export const PERSONA_ICONS: Record<PersonaCode, LucideIcon> = {
+  dispatcher_analyst: Activity,
+  market_analyst: TrendingUp,
+  energy_advisor: Lightbulb,
+  battery_coach: BatteryCharging,
+};
+
+export interface PersonaCopy {
   display: string;
   short: string;
   tagline: string;
@@ -71,52 +79,16 @@ interface PersonaMeta {
   samples: string[];
 }
 
-export const PERSONA_META: Record<PersonaCode, PersonaMeta> = {
-  dispatcher_analyst: {
-    display: "Диспетчерський аналітик",
-    short: "Диспетчер",
-    tagline: "Виробництво, небаланси, ТО",
-    icon: Activity,
-    samples: [
-      "що сьогодні з виробництвом?",
-      "поясни небаланс",
-      "коли наступне ТО?",
-    ],
-  },
-  market_analyst: {
-    display: "Ринковий аналітик",
-    short: "Ринок",
-    tagline: "Біди, виторг, арбітраж",
-    icon: TrendingUp,
-    samples: [
-      "який бід на завтра?",
-      "розбий виторг по каналах",
-      "коли арбітражне вікно?",
-    ],
-  },
-  energy_advisor: {
-    display: "Енергетичний радник",
-    short: "Радник",
-    tagline: "Споживання, тарифи, сценарії",
-    icon: Lightbulb,
-    samples: [
-      "скільки спожили своєї генерації?",
-      "сценарій блекауту",
-      "вплив тарифу на оплату",
-    ],
-  },
-  battery_coach: {
-    display: "Тренер по батареях",
-    short: "Батареї",
-    tagline: "SOC, цикли, заряд/розряд",
-    icon: BatteryCharging,
-    samples: [
-      "коли заряджати батарею?",
-      "який поточний SOC?",
-      "перевір цикли батареї",
-    ],
-  },
-};
+export function usePersonaCopy(code: PersonaCode): PersonaCopy {
+  const t = useTranslations("personas");
+  return {
+    display: t(`${code}.display`),
+    short: t(`${code}.short`),
+    tagline: t(`${code}.tagline`),
+    icon: PERSONA_ICONS[code],
+    samples: t.raw(`${code}.samples`) as string[],
+  };
+}
 
 export const PERSONA_ORDER: PersonaCode[] = [
   "dispatcher_analyst",
@@ -252,6 +224,8 @@ export function AgentChat() {
     };
   }, [open]);
 
+  const tChatErr = useTranslations("agentChat");
+
   const sendQuery = useCallback(
     async (question: string, opts: { speakAnswer?: boolean } = {}) => {
       const trimmed = question.trim();
@@ -283,13 +257,13 @@ export function AgentChat() {
         if (opts.speakAnswer) speakUkrainian(r.answer);
       } catch (e: unknown) {
         const errText =
-          e instanceof Error ? e.message : "Невідома помилка зв'язку з агентом";
+          e instanceof Error ? e.message : tChatErr("errorUnknown");
         setMessages((prev) => [
           ...prev,
           {
             id: `e-${Date.now()}`,
             role: "agent",
-            text: `[помилка] ${errText}`,
+            text: `${tChatErr("errorPrefix")} ${errText}`,
           },
         ]);
       } finally {
@@ -389,8 +363,13 @@ export function AgentChat() {
     };
   }, [openWithVoice, openWithPersona, justOpen]);
 
-  const personaCfg = PERSONA_META[persona];
+  const personaCfg = usePersonaCopy(persona);
   const PersonaIcon = personaCfg.icon;
+  const tShow = useTranslations("agentShowcase");
+  const tChat = useTranslations("agentChat");
+  const tPersonas = useTranslations("personas");
+
+  const askLabel = `${tShow("askButton")} · ${personaCfg.display}`;
 
   return (
     <>
@@ -399,8 +378,8 @@ export function AgentChat() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          aria-label={`Запитати у AI агента (${personaCfg.display})`}
-          title={`Запитати у AI агента (${personaCfg.display})`}
+          aria-label={askLabel}
+          title={askLabel}
           className="fixed bottom-5 right-5 z-40 group inline-flex items-center gap-2 pl-3 pr-4 py-3 rounded-full text-text-inverse bg-accent hover:bg-accent-deep shadow-elevated transition-all hover:scale-[1.03] active:scale-[0.98] sm:gap-2.5 sm:py-3.5 sm:pl-3.5 sm:pr-5 agent-fab-pulse"
         >
           <span className="relative inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/15">
@@ -413,9 +392,9 @@ export function AgentChat() {
             />
           </span>
           <span className="hidden sm:inline text-sm font-semibold tracking-tight">
-            Запитати агента
+            {tShow("askButton")}
           </span>
-          <span className="sr-only sm:hidden">Запитати агента</span>
+          <span className="sr-only sm:hidden">{tShow("askButton")}</span>
         </button>
       )}
 
@@ -437,7 +416,7 @@ export function AgentChat() {
             open ? "translate-x-0" : "translate-x-full",
           )}
           role="dialog"
-          aria-label="Krytsia AI агент"
+          aria-label={tChat("drawerTitle")}
         >
           {/* Header */}
           <div className="p-4 border-b border-border flex items-center justify-between gap-2">
@@ -454,12 +433,13 @@ export function AgentChat() {
                     setMessages([]);
                   }}
                   className="text-xs text-text-muted bg-transparent border border-border rounded px-1 py-0.5 mt-0.5"
-                  aria-label="Обрати агента"
+                  aria-label={tChat("selectAgentLabel")}
                 >
-                  <option value="dispatcher_analyst">Диспетчерський аналітик</option>
-                  <option value="market_analyst">Ринковий аналітик</option>
-                  <option value="energy_advisor">Енергетичний радник</option>
-                  <option value="battery_coach">Тренер по батареях</option>
+                  {PERSONA_ORDER.map((code) => (
+                    <option key={code} value={code}>
+                      {tPersonas(`${code}.display`)}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -467,7 +447,7 @@ export function AgentChat() {
               type="button"
               onClick={() => setOpen(false)}
               className="p-1 rounded hover:bg-bg-subtle text-text-muted"
-              aria-label="Закрити"
+              aria-label="Close"
             >
               <X size={18} />
             </button>
@@ -479,7 +459,7 @@ export function AgentChat() {
               <div className="text-sm text-text-muted">
                 <p className="mb-2 flex items-center gap-1.5">
                   <Sparkles size={14} className="text-accent" />
-                  Я допоможу з аналітикою на основі реальних даних. Приклади:
+                  {tChat("emptyPrompt")}
                 </p>
                 <div className="space-y-1.5">
                   {personaCfg.samples.map((q) => (
@@ -558,7 +538,7 @@ export function AgentChat() {
 
             {busy && (
               <div className="text-xs text-text-muted italic px-3 py-2">
-                Агент аналізує...
+                {tChat("sending")}
               </div>
             )}
             <div ref={listEndRef} />
@@ -579,15 +559,15 @@ export function AgentChat() {
                     ? "bg-accent border-accent text-text-inverse"
                     : "bg-bg-card border-border hover:border-accent text-text-body",
                 )}
-                aria-label={listening ? "Зупинити запис" : "Голосовий ввід"}
-                title={listening ? "Зупинити" : "Сказати голосом"}
+                aria-label={listening ? tChat("voiceStop") : tChat("voiceStart")}
+                title={listening ? tChat("voiceStop") : tChat("voiceStart")}
               >
                 {listening ? <MicOff size={14} /> : <Mic size={14} />}
               </button>
             ) : (
               <span
                 className="p-2 rounded-lg border border-border text-text-muted opacity-50"
-                title="Голос не доступний у вашому браузері"
+                title={tChat("voiceUnavailable")}
               >
                 <Mic size={14} />
               </span>
@@ -596,7 +576,7 @@ export function AgentChat() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Поставте питання..."
+              placeholder={tChat("placeholder")}
               rows={1}
               className="flex-1 px-3 py-2 rounded-lg border border-border bg-bg-page text-text-body resize-none focus:outline-none focus:border-accent text-sm"
               disabled={busy}
@@ -605,7 +585,7 @@ export function AgentChat() {
               type="submit"
               disabled={busy || !input.trim()}
               className="p-2 rounded-lg bg-accent text-text-inverse hover:bg-accent-deep transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              aria-label="Надіслати"
+              aria-label={tChat("submit")}
             >
               <Send size={14} />
             </button>
