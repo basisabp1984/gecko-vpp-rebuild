@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gecko-vpp-api"
+version = "0.1.0"
+description = "GECKO VPP v2 — FastAPI backend (DB layer + REST API)"
+requires-python = ">=3.11,<3.13"
+readme = "README.md"
+authors = [{ name = "GECKO VPP rebuild" }]
+dependencies = [
+    "fastapi>=0.115,<1",
+    "uvicorn[standard]>=0.30,<1",
+    "sqlalchemy[asyncio]>=2.0,<3",
+    "asyncpg>=0.29,<1",
+    "psycopg[binary]>=3.1,<4",
+    "alembic>=1.13,<2",
+    "pydantic>=2.7,<3",
+    "pydantic-settings>=2.3,<3",
+    "python-dotenv>=1.0,<2",
+    "httpx>=0.27,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0,<9",
+    "pytest-asyncio>=0.23,<1",
+    "ruff>=0.5",
+    "mypy>=1.10",
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

@@ -1,0 +1,20 @@
+# GECKO VPP — production overlay
+# Used on Hetzner host (/opt/gecko-vpp/) to:
+#   - drop dev port mappings
+#   - attach api to caddy_web network so Caddy can reach gecko-api:8000
+
+services:
+
+  postgres:
+    ports: []                          # no host port in prod
+
+  api:
+    ports: []                          # no host port in prod; Caddy uses Docker DNS
+    networks:
+      - gecko-internal
+      - caddy_web
+
+networks:
+  caddy_web:
+    external: true
+    name: caddy_web

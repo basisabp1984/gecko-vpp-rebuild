@@ -1,0 +1,67 @@
+/*
+ * GECKO VPP — Design Tokens
+ * The ONLY file in the codebase allowed to contain literal hex values.
+ * Everything else must reference these CSS variables (directly or via Tailwind utilities).
+ */
+
+:root {
+  /* Light theme — default */
+  --color-bg-page: #F8FAFC;
+  --color-bg-card: #FFFFFF;
+  --color-bg-elevated: #FFFFFF;
+  --color-bg-subtle: #F1F5F9;
+
+  --color-text-body: #0F172A;
+  --color-text-heading: #020617;
+  --color-text-muted: #475569;
+  --color-text-inverse: #FFFFFF;
+
+  --color-border: #E2E8F0;
+  --color-border-strong: #CBD5E1;
+
+  /* Brand teal scale */
+  --color-accent: #14B8A6;
+  --color-accent-deep: #0F766E;
+  --color-accent-light: #2DD4BF;
+  --color-accent-subtle: #CCFBF1;
+
+  /* Status */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-alert: #F43F5E;
+  --color-info: #0EA5E9;
+
+  /* Misc */
+  --color-shadow: 15 23 42; /* slate-900 rgb tuple for shadow alpha */
+  --gradient-page: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+  --gradient-hero: radial-gradient(ellipse at top, #CCFBF1 0%, transparent 60%);
+}
+
+:root[data-theme="dark"] {
+  --color-bg-page: #0A1C1F;
+  --color-bg-card: #114248;
+  --color-bg-elevated: #14555C;
+  --color-bg-subtle: #0E2B2E;
+
+  --color-text-body: #F1F5F9;
+  --color-text-heading: #FFFFFF;
+  --color-text-muted: #94A3B8;
+  --color-text-inverse: #020617;
+
+  --color-border: #1F5A60;
+  --color-border-strong: #2A7079;
+
+  --color-accent: #14B8A6;
+  --color-accent-deep: #0F766E;
+  --color-accent-light: #2DD4BF;
+  --color-accent-subtle: #134E4A;
+
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-alert: #F43F5E;
+  --color-info: #0EA5E9;
+
+  --color-shadow: 0 0 0;
+  --gradient-page: linear-gradient(180deg, #0E2B2E 0%, #0A1C1F 100%);
+  --gradient-hero: radial-gradient(ellipse at top, #0F766E 0%, transparent 60%);
+}

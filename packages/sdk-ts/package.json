@@ -1,0 +1,31 @@
+{
+  "name": "@gecko-vpp/sdk-ts",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for the GECKO VPP platform — Ukrainian energy market aggregator.",
+  "license": "MIT",
+  "author": "Andrii Radkovskyi <basisabp1984@gmail.com>",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json",
+    "example:assets": "tsx examples/list_assets.ts",
+    "example:rdn": "tsx examples/fetch_rdn.ts",
+    "example:agent": "tsx examples/query_agent.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

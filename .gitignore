@@ -1,0 +1,89 @@
+# Node
+node_modules/
+.next/
+out/
+dist/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.venv/
+venv/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.crt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.tar.gz
+*.zip
+
+# Generated SDKs (built on demand)
+packages/sdk-ts/dist/
+packages/sdk-py/dist/
+packages/sdk-py/*.egg-info/
+
+# OpenAPI spec (regenerated)
+packages/openapi/openapi.json
+
+# Database
+*.db
+*.sqlite
+pgdata/
+
+# Vercel
+.vercel/
+
+# Tests
+playwright-report/
+test-results/
+
+# Client confidential material — NEVER commit
+source/
+*.pdf
+phase-1-understanding/
+
+# Local task / panic logs
+*.panic.log
+next-panic-*.log

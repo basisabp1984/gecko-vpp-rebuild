@@ -1,0 +1,12 @@
+{
+  "name": "gecko-vpp-rebuild",
+  "private": true,
+  "version": "0.1.0",
+  "description": "GECKO VPP rebuild — monorepo (FastAPI backend + Next.js web).",
+  "scripts": {
+    "web:dev": "npm --prefix apps/web run dev",
+    "web:build": "npm --prefix apps/web run build",
+    "web:typecheck": "npm --prefix apps/web run typecheck",
+    "web:lint": "npm --prefix apps/web run lint"
+  }
+}
