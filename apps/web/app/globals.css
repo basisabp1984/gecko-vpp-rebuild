@@ -36,3 +36,32 @@ html[data-theme="dark"] body {
 .scrollbar-thin::-webkit-scrollbar-track {
   background: transparent;
 }
+
+/* Agent FAB attention pulse — soft halo behind the floating button */
+@keyframes agent-fab-pulse {
+  0% {
+    box-shadow:
+      0 8px 24px -6px rgba(15, 23, 42, 0.25),
+      0 0 0 0 var(--color-accent-light);
+  }
+  70% {
+    box-shadow:
+      0 8px 24px -6px rgba(15, 23, 42, 0.25),
+      0 0 0 14px rgba(45, 212, 191, 0);
+  }
+  100% {
+    box-shadow:
+      0 8px 24px -6px rgba(15, 23, 42, 0.25),
+      0 0 0 0 rgba(45, 212, 191, 0);
+  }
+}
+
+.agent-fab-pulse {
+  animation: agent-fab-pulse 2.4s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agent-fab-pulse {
+    animation: none;
+  }
+}

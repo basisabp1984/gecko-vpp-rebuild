@@ -1,6 +1,18 @@
 "use client";
 
-import { Bot, Mic, MicOff, Send, Sparkles, X } from "lucide-react";
+import {
+  Activity,
+  BatteryCharging,
+  Bot,
+  Lightbulb,
+  Mic,
+  MicOff,
+  Send,
+  Sparkles,
+  TrendingUp,
+  X,
+  type LucideIcon,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
 import {
   useCallback,
@@ -51,15 +63,20 @@ interface ChatMessage {
   durationMs?: number;
 }
 
-const PERSONA_META: Record<
-  PersonaCode,
-  {
-    display: string;
-    samples: string[];
-  }
-> = {
+interface PersonaMeta {
+  display: string;
+  short: string;
+  tagline: string;
+  icon: LucideIcon;
+  samples: string[];
+}
+
+export const PERSONA_META: Record<PersonaCode, PersonaMeta> = {
   dispatcher_analyst: {
     display: "Диспетчерський аналітик",
+    short: "Диспетчер",
+    tagline: "Виробництво, небаланси, ТО",
+    icon: Activity,
     samples: [
       "що сьогодні з виробництвом?",
       "поясни небаланс",
@@ -68,6 +85,9 @@ const PERSONA_META: Record<
   },
   market_analyst: {
     display: "Ринковий аналітик",
+    short: "Ринок",
+    tagline: "Біди, виторг, арбітраж",
+    icon: TrendingUp,
     samples: [
       "який бід на завтра?",
       "розбий виторг по каналах",
@@ -76,6 +96,9 @@ const PERSONA_META: Record<
   },
   energy_advisor: {
     display: "Енергетичний радник",
+    short: "Радник",
+    tagline: "Споживання, тарифи, сценарії",
+    icon: Lightbulb,
     samples: [
       "скільки спожили своєї генерації?",
       "сценарій блекауту",
@@ -84,6 +107,9 @@ const PERSONA_META: Record<
   },
   battery_coach: {
     display: "Тренер по батареях",
+    short: "Батареї",
+    tagline: "SOC, цикли, заряд/розряд",
+    icon: BatteryCharging,
     samples: [
       "коли заряджати батарею?",
       "який поточний SOC?",
@@ -91,6 +117,15 @@ const PERSONA_META: Record<
     ],
   },
 };
+
+export const PERSONA_ORDER: PersonaCode[] = [
+  "dispatcher_analyst",
+  "market_analyst",
+  "energy_advisor",
+  "battery_coach",
+];
+
+export type { PersonaCode };
 
 /* -------------------------------------------------------------------------- */
 /* URL → persona resolution                                                    */
@@ -161,6 +196,8 @@ function speakUkrainian(text: string) {
 
 interface AgentChatBridge {
   openWithVoice: () => void;
+  openWithPersona: (p: PersonaCode, prefill?: string) => void;
+  open: () => void;
 }
 
 let _bridge: AgentChatBridge | null = null;
@@ -324,27 +361,63 @@ export function AgentChat() {
     }, 50);
   }, [startListening]);
 
-  // Expose bridge for VoiceButton.
+  const openWithPersona = useCallback(
+    (p: PersonaCode, prefill?: string) => {
+      setPersona(p);
+      setMessages([]);
+      setOpen(true);
+      if (prefill) {
+        setInput(prefill);
+      }
+    },
+    [],
+  );
+
+  const justOpen = useCallback(() => {
+    setOpen(true);
+  }, []);
+
+  // Expose bridge for VoiceButton and homepage showcase.
   useEffect(() => {
-    _bridge = { openWithVoice };
+    _bridge = {
+      openWithVoice,
+      openWithPersona,
+      open: justOpen,
+    };
     return () => {
       _bridge = null;
     };
-  }, [openWithVoice]);
+  }, [openWithVoice, openWithPersona, justOpen]);
 
   const personaCfg = PERSONA_META[persona];
+  const PersonaIcon = personaCfg.icon;
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        aria-label="Агент-асистент"
-        title="Агент-асистент"
-        className="p-2 rounded-lg border border-border bg-bg-card hover:border-accent transition-colors text-text-body"
-      >
-        <Bot size={16} />
-      </button>
+      {/* Floating Action Button — visible on every page */}
+      {!open && (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label={`Запитати у AI агента (${personaCfg.display})`}
+          title={`Запитати у AI агента (${personaCfg.display})`}
+          className="fixed bottom-5 right-5 z-40 group inline-flex items-center gap-2 pl-3 pr-4 py-3 rounded-full text-text-inverse bg-accent hover:bg-accent-deep shadow-elevated transition-all hover:scale-[1.03] active:scale-[0.98] sm:gap-2.5 sm:py-3.5 sm:pl-3.5 sm:pr-5 agent-fab-pulse"
+        >
+          <span className="relative inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/15">
+            <PersonaIcon size={16} className="sm:hidden" />
+            <PersonaIcon size={18} className="hidden sm:inline" />
+            <Sparkles
+              size={9}
+              className="absolute -top-0.5 -right-0.5 text-white/90"
+              aria-hidden
+            />
+          </span>
+          <span className="hidden sm:inline text-sm font-semibold tracking-tight">
+            Запитати агента
+          </span>
+          <span className="sr-only sm:hidden">Запитати агента</span>
+        </button>
+      )}
 
       {/* Overlay + drawer */}
       <div

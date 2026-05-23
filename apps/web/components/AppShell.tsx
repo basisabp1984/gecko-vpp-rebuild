@@ -23,7 +23,6 @@ export function AppShell({ children }: { children: ReactNode }) {
           <TenantSwitcher />
           <div className="flex items-center gap-1">
             <AlertsBell />
-            <AgentChat />
             <VoiceButton />
             <ThemeToggle />
           </div>
@@ -33,6 +32,9 @@ export function AppShell({ children }: { children: ReactNode }) {
       <main className="flex-1 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
         {children}
       </main>
+
+      {/* AgentChat is mounted globally so its FAB is reachable from any page */}
+      <AgentChat />
 
       <footer className="border-t border-border bg-bg-card/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-text-muted">

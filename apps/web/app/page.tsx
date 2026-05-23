@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Factory, Building2, Battery, Code2, ShieldCheck } from "lucide-react";
 import { ArchitectureDiagram } from "@/components/diagram/ArchitectureDiagram";
 import { ScenarioCard } from "@/components/ScenarioCard";
+import { AgentShowcase } from "@/components/AgentShowcase";
 
 export default function HomePage() {
   return (
@@ -17,6 +18,9 @@ export default function HomePage() {
           Для бізнесу. Для виробників. Для ринку.
         </p>
       </section>
+
+      {/* AI agents showcase — prominent on landing */}
+      <AgentShowcase />
 
       {/* Architecture diagram */}
       <section className="rounded-2xl border border-border bg-bg-card p-4 sm:p-6 shadow-card">
