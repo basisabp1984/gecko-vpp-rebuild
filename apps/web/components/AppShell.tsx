@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { GeckoLogo } from "./GeckoLogo";
+import { KrytsiaLogo } from "./KrytsiaLogo";
 import { TenantSwitcher } from "./TenantSwitcher";
 import { PersonaSwitcher } from "./PersonaSwitcher";
 import { CommandPaletteTrigger } from "./CommandPaletteTrigger";
@@ -15,7 +15,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="min-h-screen flex flex-col">
       <header className="sticky top-0 z-40 border-b border-border bg-bg-card/90 backdrop-blur">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center gap-4">
-          <GeckoLogo />
+          <KrytsiaLogo />
           <div className="hidden lg:block w-px h-6 bg-border" />
           <PersonaSwitcher />
           <div className="flex-1" />
@@ -36,7 +36,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <footer className="border-t border-border bg-bg-card/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-text-muted">
-          <span>© 2026 GECKO VPP. Робимо складну енергетику керованою.</span>
+          <span>© 2026 Krytsia. Інтелектуальний шар для критичної енергетичної інфраструктури.</span>
           <div className="flex items-center gap-4">
             <a
               href="https://github.com/basisabp1984/agentic-dev-framework"

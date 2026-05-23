@@ -1,17 +1,17 @@
-# GECKO VPP
+# Krytsia — VPP + Energy Management Platform
 
-> Інфраструктурна платформа для портфельного управління енергетичними активами на українському ринку електроенергії.
+> Інтелектуальний шар для критичної енергетичної інфраструктури. Україна · ЄС.
 
-**Робимо складну енергетику керованою. Для бізнесу. Для виробників. Для ринку.**
+**Virtual Power Plant + Energy Management Platform для українського енергоринку. AI-агенти, прогнозування, диспетчеризація, ринкова інтеграція.**
 
 ---
 
 ## What this is
 
-GECKO VPP — production-fidelity demo of a Virtual Power Plant aggregation platform for Ukraine. Aggregates solar (СЕС), wind (ВЕС), gas (ГПУ), and battery storage (УЗЕ) assets of multiple owners into one disciplined trading-and-dispatch entity.
+Krytsia — production-fidelity demo of a Virtual Power Plant + EMS platform for Ukraine. Aggregates solar (СЕС), wind (ВЕС), gas (ГПУ), and battery storage (УЗЕ) assets of multiple owners into one disciplined trading-and-dispatch entity.
 
-- **Frontend:** Next.js 16 (App Router, React 19, TypeScript). Deployed on Vercel at `gecko.radai-1984.dev`.
-- **Backend:** FastAPI (Python 3.11+, async SQLAlchemy 2.0). Deployed on Hetzner VPS at `api.gecko.radai-1984.dev`.
+- **Frontend:** Next.js 16 (App Router, React 19, TypeScript). Deployed on Vercel at `krytsia.radai-1984.dev`.
+- **Backend:** FastAPI (Python 3.11+, async SQLAlchemy 2.0). Deployed on Hetzner VPS at `api.gecko.radai-1984.dev` (internal API URL, retained from build infra).
 - **Database:** Postgres 16 with multi-tenant Row-Level Security.
 - **Data:** Synthetic, modelled to Ukrainian market shapes (РДН/ВДР/БР/ДД, ENTSO-E EIC codes, КЕП stub). 30 days window (`2026-04-23 → 2026-05-23`).
 
@@ -79,7 +79,7 @@ Synthetic. 30 days `2026-04-23 → 2026-05-23`. Portfolio: 8–12 assets totalli
 
 ## Status
 
-This is **v2 rebuild**. v1 lives at `vpp.radai-1984.dev`. See `phase-1-understanding/`, `phase-2-solution/`, `phase-3-architecture/` for the design trail.
+This is **v2 rebuild** (Krytsia rebrand of the v1 GECKO VPP demo). v1 lives at `vpp.radai-1984.dev`. See `phase-2-solution/`, `phase-3-architecture/` for the design trail.
 
 ## License
 

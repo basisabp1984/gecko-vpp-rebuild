@@ -17,9 +17,9 @@ import {
 import { useToast } from "@/components/Toast";
 import { TENANT_LIST } from "@/lib/tenants";
 
-const QUICK_START_TS = `import { GeckoVPPClient } from "@gecko-vpp/sdk-ts";
+const QUICK_START_TS = `import { KrytsiaClient } from "@krytsia/sdk-ts";
 
-const client = new GeckoVPPClient({
+const client = new KrytsiaClient({
   baseURL: "http://localhost:8000",
   tenantId: "11111111-1111-1111-1111-111111111111",
 });
@@ -27,9 +27,9 @@ const client = new GeckoVPPClient({
 const assets = await client.assets.list();
 console.log(\`Знайдено \${assets.length} активів\`);`;
 
-const QUICK_START_PY = `from gecko_vpp_sdk import GeckoVPPClient
+const QUICK_START_PY = `from krytsia_sdk import KrytsiaClient
 
-with GeckoVPPClient(
+with KrytsiaClient(
     base_url="http://localhost:8000",
     tenant_id="11111111-1111-1111-1111-111111111111",
 ) as client:
@@ -101,7 +101,7 @@ export default function DeveloperPage() {
             </Link>
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-text-heading tracking-tight">
-            Розробникам GECKO VPP — <span className="text-accent-deep">API + SDK + Webhooks</span>
+            Розробникам Krytsia — <span className="text-accent-deep">API + SDK + Webhooks</span>
           </h1>
           <p className="text-base text-text-muted">
             Програмний доступ до тих самих даних, що бачать виробники, бізнес та власники
@@ -249,7 +249,7 @@ export default function DeveloperPage() {
       {/* Architecture mini-diagram link */}
       <section className="rounded-xl border border-border bg-bg-card p-5 shadow-card flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
-          <h3 className="text-base font-semibold text-text-heading mb-1">Архітектура GECKO VPP</h3>
+          <h3 className="text-base font-semibold text-text-heading mb-1">Архітектура Krytsia</h3>
           <p className="text-sm text-text-muted">
             Хаб-і-спиці: 4 ринкові сервіси, 4 типи учасників. Усі шляхи дотепер ведуть до одного
             API.

@@ -74,7 +74,7 @@ export default function AdminEngagePage() {
     <div className="flex flex-col gap-6">
       <header>
         <h1 className="text-2xl sm:text-3xl font-bold text-text-heading">
-          GECKO VPP · Operator Console / Engage
+          Krytsia · Operator Console / Engage
         </h1>
         <p className="text-sm text-text-muted">
           Крос-тенантна оглядова панель. Бачите тих самих учасників, що й на діаграмі головної.

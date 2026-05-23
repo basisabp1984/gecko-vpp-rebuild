@@ -99,7 +99,7 @@ export function ArchitectureDiagram() {
         viewBox="0 0 1000 640"
         className="w-full min-w-[640px] h-auto"
         role="img"
-        aria-label="Архітектурна діаграма GECKO VPP"
+        aria-label="Архітектурна діаграма Krytsia VPP"
       >
         {/* Subtle grid */}
         <defs>
@@ -153,21 +153,22 @@ export function ArchitectureDiagram() {
             x={HUB.x}
             y={HUB.y - 6}
             textAnchor="middle"
-            fontSize={26}
+            fontSize={22}
             fontWeight={800}
             fill="var(--color-text-inverse)"
+            letterSpacing="0.06em"
           >
-            GECKO
+            KRYTSIA
           </text>
           <text
             x={HUB.x}
             y={HUB.y + 22}
             textAnchor="middle"
-            fontSize={16}
+            fontSize={14}
             fontWeight={600}
             fill="var(--color-accent-light)"
           >
-            VPP
+            VPP · EMS
           </text>
         </g>
 

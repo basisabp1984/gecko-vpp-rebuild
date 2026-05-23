@@ -87,7 +87,7 @@ export default function ApiExplorerPage() {
             hideDarkModeToggle: false,
             layout: "modern",
             // Identify this instance to Scalar
-            slug: "gecko-vpp-api",
+            slug: "krytsia-api",
           }}
         />
       </div>

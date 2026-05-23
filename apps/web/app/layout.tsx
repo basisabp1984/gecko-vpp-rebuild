@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GECKO VPP — віртуальна електростанція",
+  title: "Krytsia — Virtual Power Plant + Energy Management Platform",
   description:
-    "Робимо складну енергетику керованою. Для бізнесу. Для виробників. Для ринку.",
+    "Інтелектуальний шар для критичної енергетичної інфраструктури. VPP + EMS для українського ринку. AI-агенти, прогнозування, диспетчеризація, ринкова інтеграція.",
 };
 
 // Inline script to apply theme BEFORE hydration, avoiding FOUC.

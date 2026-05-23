@@ -5,24 +5,24 @@ import { useState } from "react";
 import { ArrowLeft, Boxes, Copy, Check, Github, Terminal } from "lucide-react";
 import { useToast } from "@/components/Toast";
 
-const INSTALL_CMD = `npm install @gecko-vpp/sdk-ts
+const INSTALL_CMD = `npm install @krytsia/sdk-ts
 # або
-pnpm add @gecko-vpp/sdk-ts
+pnpm add @krytsia/sdk-ts
 # або
-bun add @gecko-vpp/sdk-ts`;
+bun add @krytsia/sdk-ts`;
 
-const CLIENT_INIT = `import { GeckoVPPClient } from "@gecko-vpp/sdk-ts";
+const CLIENT_INIT = `import { KrytsiaClient } from "@krytsia/sdk-ts";
 
-const client = new GeckoVPPClient({
+const client = new KrytsiaClient({
   baseURL: "http://localhost:8000",
   tenantId: "11111111-1111-1111-1111-111111111111",
 });`;
 
-const EX_LIST_ASSETS = `import { GeckoVPPClient } from "@gecko-vpp/sdk-ts";
+const EX_LIST_ASSETS = `import { KrytsiaClient } from "@krytsia/sdk-ts";
 
-const client = new GeckoVPPClient({
-  baseURL: process.env.GECKO_API ?? "http://localhost:8000",
-  tenantId: process.env.GECKO_TENANT ?? "11111111-1111-1111-1111-111111111111",
+const client = new KrytsiaClient({
+  baseURL: process.env.KRYTSIA_API ?? "http://localhost:8000",
+  tenantId: process.env.KRYTSIA_TENANT ?? "11111111-1111-1111-1111-111111111111",
 });
 
 const assets = await client.assets.list();
@@ -31,11 +31,11 @@ for (const a of assets) {
   console.log(\`  \${a.code.padEnd(20)} \${a.display_name.padEnd(30)} \${a.asset_class.padEnd(8)} \${a.capacity_mw} МВт\`);
 }`;
 
-const EX_FETCH_RDN = `import { GeckoVPPClient } from "@gecko-vpp/sdk-ts";
+const EX_FETCH_RDN = `import { KrytsiaClient } from "@krytsia/sdk-ts";
 
-const client = new GeckoVPPClient({
-  baseURL: process.env.GECKO_API ?? "http://localhost:8000",
-  tenantId: process.env.GECKO_TENANT ?? "11111111-1111-1111-1111-111111111111",
+const client = new KrytsiaClient({
+  baseURL: process.env.KRYTSIA_API ?? "http://localhost:8000",
+  tenantId: process.env.KRYTSIA_TENANT ?? "11111111-1111-1111-1111-111111111111",
 });
 
 const rdn = await client.market.rdn({
@@ -52,11 +52,11 @@ console.log(\`  максимум:    \${max.toFixed(2)} грн/МВт·год\`)
 console.log(\`  мінімум:     \${min.toFixed(2)} грн/МВт·год\`);
 console.log(\`  капнуто:     \${capped} годин\`);`;
 
-const EX_QUERY_AGENT = `import { GeckoVPPClient } from "@gecko-vpp/sdk-ts";
+const EX_QUERY_AGENT = `import { KrytsiaClient } from "@krytsia/sdk-ts";
 
-const client = new GeckoVPPClient({
-  baseURL: process.env.GECKO_API ?? "http://localhost:8000",
-  tenantId: process.env.GECKO_TENANT ?? "11111111-1111-1111-1111-111111111111",
+const client = new KrytsiaClient({
+  baseURL: process.env.KRYTSIA_API ?? "http://localhost:8000",
+  tenantId: process.env.KRYTSIA_TENANT ?? "11111111-1111-1111-1111-111111111111",
 });
 
 const res = await client.agents.query(

@@ -1,5 +1,5 @@
 /*
- * GECKO VPP — Design Tokens
+ * Krytsia — Design Tokens
  * The ONLY file in the codebase allowed to contain literal hex values.
  * Everything else must reference these CSS variables (directly or via Tailwind utilities).
  */

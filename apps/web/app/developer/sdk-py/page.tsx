@@ -5,15 +5,15 @@ import { useState } from "react";
 import { ArrowLeft, Code2, Copy, Check, Github, Terminal } from "lucide-react";
 import { useToast } from "@/components/Toast";
 
-const INSTALL_CMD = `pip install gecko-vpp-sdk
+const INSTALL_CMD = `pip install krytsia-sdk
 # або
-poetry add gecko-vpp-sdk
+poetry add krytsia-sdk
 # або
-uv add gecko-vpp-sdk`;
+uv add krytsia-sdk`;
 
-const CLIENT_INIT = `from gecko_vpp_sdk import GeckoVPPClient
+const CLIENT_INIT = `from krytsia_sdk import KrytsiaClient
 
-with GeckoVPPClient(
+with KrytsiaClient(
     base_url="http://localhost:8000",
     tenant_id="11111111-1111-1111-1111-111111111111",
 ) as client:
@@ -21,11 +21,11 @@ with GeckoVPPClient(
 
 const EX_LIST_ASSETS = `"""List all assets in the demo portfolio."""
 import os
-from gecko_vpp_sdk import GeckoVPPClient
+from krytsia_sdk import KrytsiaClient
 
-with GeckoVPPClient(
-    base_url=os.environ.get("GECKO_API", "http://localhost:8000"),
-    tenant_id=os.environ.get("GECKO_TENANT", "11111111-1111-1111-1111-111111111111"),
+with KrytsiaClient(
+    base_url=os.environ.get("KRYTSIA_API", "http://localhost:8000"),
+    tenant_id=os.environ.get("KRYTSIA_TENANT", "11111111-1111-1111-1111-111111111111"),
 ) as client:
     assets = client.assets()
     print(f"Знайдено {len(assets)} активів:")
@@ -34,11 +34,11 @@ with GeckoVPPClient(
 
 const EX_FETCH_RDN = `"""Fetch one day of РДН prices and summarise."""
 import os
-from gecko_vpp_sdk import GeckoVPPClient
+from krytsia_sdk import KrytsiaClient
 
-with GeckoVPPClient(
-    base_url=os.environ.get("GECKO_API", "http://localhost:8000"),
-    tenant_id=os.environ.get("GECKO_TENANT", "11111111-1111-1111-1111-111111111111"),
+with KrytsiaClient(
+    base_url=os.environ.get("KRYTSIA_API", "http://localhost:8000"),
+    tenant_id=os.environ.get("KRYTSIA_TENANT", "11111111-1111-1111-1111-111111111111"),
 ) as client:
     rdn = client.market_rdn(date_start="2026-05-12", date_end="2026-05-12")
     prices = [float(r["price_uah_mwh"]) for r in rdn]
@@ -51,11 +51,11 @@ with GeckoVPPClient(
 
 const EX_QUERY_AGENT = `"""Ask the dispatcher analyst a question."""
 import os
-from gecko_vpp_sdk import GeckoVPPClient
+from krytsia_sdk import KrytsiaClient
 
-with GeckoVPPClient(
-    base_url=os.environ.get("GECKO_API", "http://localhost:8000"),
-    tenant_id=os.environ.get("GECKO_TENANT", "11111111-1111-1111-1111-111111111111"),
+with KrytsiaClient(
+    base_url=os.environ.get("KRYTSIA_API", "http://localhost:8000"),
+    tenant_id=os.environ.get("KRYTSIA_TENANT", "11111111-1111-1111-1111-111111111111"),
 ) as client:
     res = client.agents_query(
         "dispatcher_analyst",

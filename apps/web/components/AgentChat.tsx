@@ -364,7 +364,7 @@ export function AgentChat() {
             open ? "translate-x-0" : "translate-x-full",
           )}
           role="dialog"
-          aria-label="GECKO агент"
+          aria-label="Krytsia AI агент"
         >
           {/* Header */}
           <div className="p-4 border-b border-border flex items-center justify-between gap-2">
