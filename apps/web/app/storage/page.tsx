@@ -16,6 +16,7 @@ import { useTenantStore } from "@/lib/store";
 import { TENANTS } from "@/lib/tenants";
 import { KPITile } from "@/components/KPITile";
 import { ScenarioCard } from "@/components/ScenarioCard";
+import { PersonaAIHelper } from "@/components/PersonaAIHelper";
 import {
   formatUAHCompact,
   formatPercent,
@@ -162,6 +163,8 @@ export default function StorageHomePage() {
           ТОВ &laquo;Запоріжжя Сторідж&raquo; · станом на {formatDate(new Date())}
         </p>
       </header>
+
+      <PersonaAIHelper persona="battery_coach" />
 
       {/* KPI grid */}
       <section className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">

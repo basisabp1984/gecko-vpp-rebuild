@@ -3,23 +3,34 @@ import { Factory, Building2, Battery, Code2, ShieldCheck } from "lucide-react";
 import { ArchitectureDiagram } from "@/components/diagram/ArchitectureDiagram";
 import { ScenarioCard } from "@/components/ScenarioCard";
 import { AgentShowcase } from "@/components/AgentShowcase";
+import { HeroVideo } from "@/components/HeroVideo";
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col gap-10">
-      {/* Tagline */}
-      <section className="relative text-center pt-6 pb-2">
-        <div className="absolute inset-0 -z-10 bg-gradient-hero opacity-50 pointer-events-none" />
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-heading tracking-tight">
-          Робимо складну енергетику{" "}
-          <span className="text-accent-deep">керованою</span>.
-        </h1>
-        <p className="mt-3 text-base sm:text-lg text-text-muted max-w-2xl mx-auto">
-          Для бізнесу. Для виробників. Для ринку.
-        </p>
-      </section>
+    <div className="flex flex-col gap-14">
+      {/* Cinematic hero with drone-aerial video + AI-first headline */}
+      <HeroVideo
+        videoSrc="/hero/renewables-aerial-720.mp4"
+        posterSrc="/hero/renewables-aerial-poster.jpg"
+        eyebrow="AI-перша платформа · VPP + EMS"
+        headline={
+          <>
+            Робимо складну енергетику{" "}
+            <span className="text-accent-light">керованою</span>.
+          </>
+        }
+        subline={
+          <>
+            Krytsia — Virtual Power Plant + Energy Management Platform для України.
+            Чотири фахівці-агенти на основі AI у вашому кабінеті: прогноз, ринок,
+            диспетчеризація, оптимізація батарей.
+          </>
+        }
+        primaryCta={{ href: "/producer", label: "Спробувати кабінет" }}
+        secondaryCta={{ href: "/developer", label: "Developer-портал" }}
+      />
 
-      {/* AI agents showcase — prominent on landing */}
+      {/* AI agents — the headline differentiator, raised to second screen */}
       <AgentShowcase />
 
       {/* Architecture diagram */}
@@ -28,44 +39,55 @@ export default function HomePage() {
       </section>
 
       {/* Persona entry cards */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <ScenarioCard
-          title="Я виробник"
-          icon={<Factory size={20} />}
-          description={
-            <>
-              Сонячна, вітрова, газо-поршнева чи гібридна станція. Прогноз, торгівля
-              на ДД/РДН/ВДР, оптимізація проти кепа та небалансів.
-            </>
-          }
-          href="/producer"
-          cta="Кабінет виробника"
-          tone="accent"
-        />
-        <ScenarioCard
-          title="Я бізнес (C&I)"
-          icon={<Building2 size={20} />}
-          description={
-            <>
-              Завод, агрохолдинг, ритейл. Мінімізуйте рахунок: тарифні плани,
-              перенесення навантажень, групова закупівля, DR-послуги.
-            </>
-          }
-          href="/c-i"
-          cta="Кабінет активного споживача"
-        />
-        <ScenarioCard
-          title="Я УЗЕ-власник"
-          icon={<Battery size={20} />}
-          description={
-            <>
-              Електрохімічне сховище як актив. Арбітраж, БР, послуги системі.
-              Знайдемо щотижневу стратегію з найкращим IRR.
-            </>
-          }
-          href="/storage"
-          cta="Кабінет УЗЕ"
-        />
+      <section>
+        <div className="mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-text-heading tracking-tight">
+            Оберіть свій сценарій
+          </h2>
+          <p className="mt-1 text-sm sm:text-base text-text-muted max-w-2xl">
+            Один продукт — три кабінети під різні ролі на ринку. Дані живі,
+            мульти-тенант через <code className="text-xs font-mono px-1 py-0.5 rounded bg-bg-subtle">X-Tenant-Id</code>.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <ScenarioCard
+            title="Я виробник"
+            icon={<Factory size={20} />}
+            description={
+              <>
+                Сонячна, вітрова, газо-поршнева чи гібридна станція. Прогноз,
+                торгівля на ДД/РДН/ВДР, оптимізація проти кепа та небалансів.
+              </>
+            }
+            href="/producer"
+            cta="Кабінет виробника"
+            tone="accent"
+          />
+          <ScenarioCard
+            title="Я бізнес (C&I)"
+            icon={<Building2 size={20} />}
+            description={
+              <>
+                Завод, агрохолдинг, ритейл. Мінімізуйте рахунок: тарифні плани,
+                перенесення навантажень, групова закупівля, DR-послуги.
+              </>
+            }
+            href="/c-i"
+            cta="Кабінет активного споживача"
+          />
+          <ScenarioCard
+            title="Я УЗЕ-власник"
+            icon={<Battery size={20} />}
+            description={
+              <>
+                Електрохімічне сховище як актив. Арбітраж, БР, послуги системі.
+                Знайдемо щотижневу стратегію з найкращим IRR.
+              </>
+            }
+            href="/storage"
+            cta="Кабінет УЗЕ"
+          />
+        </div>
       </section>
 
       {/* Secondary links */}

@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Krytsia — Virtual Power Plant + Energy Management Platform",
+  title: "Krytsia — AI-перша платформа для VPP та EMS",
   description:
-    "Інтелектуальний шар для критичної енергетичної інфраструктури. VPP + EMS для українського ринку. AI-агенти, прогнозування, диспетчеризація, ринкова інтеграція.",
+    "Перша VPP + EMS платформа з AI-агентами в Україні. Чотири фахівці-агенти у вашому кабінеті: прогноз, ринок, диспетчеризація, оптимізація батарей. Жива інтеграція з РДН/ВДР/БР.",
 };
 
 // Inline script to apply theme BEFORE hydration, avoiding FOUC.

@@ -16,6 +16,7 @@ import { useTenantStore } from "@/lib/store";
 import { TENANTS } from "@/lib/tenants";
 import { KPITile } from "@/components/KPITile";
 import { ScenarioCard } from "@/components/ScenarioCard";
+import { PersonaAIHelper } from "@/components/PersonaAIHelper";
 import {
   CartesianGrid,
   Legend,
@@ -186,6 +187,8 @@ export default function CIHomePage() {
           </p>
         </div>
       </header>
+
+      <PersonaAIHelper persona="energy_advisor" />
 
       {/* KPI grid — C&I-tuned */}
       <section className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">

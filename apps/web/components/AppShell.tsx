@@ -38,7 +38,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <footer className="border-t border-border bg-bg-card/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-text-muted">
-          <span>© 2026 Krytsia. Інтелектуальний шар для критичної енергетичної інфраструктури.</span>
+          <span>© 2026 Krytsia. Перша VPP + EMS платформа з AI-агентами в Україні.</span>
           <div className="flex items-center gap-4">
             <a
               href="https://github.com/basisabp1984/agentic-dev-framework"
