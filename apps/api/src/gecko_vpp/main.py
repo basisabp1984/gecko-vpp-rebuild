@@ -20,7 +20,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from gecko_vpp.common.envelope import build_error
 from gecko_vpp.common.errors import GeckoError, NotFound
 from gecko_vpp.config import get_settings
-from gecko_vpp.db import get_engine
+from gecko_vpp.db import dispose_engine
 from gecko_vpp.routers import admin as admin_router
 from gecko_vpp.routers import agents as agents_router
 from gecko_vpp.routers import core as core_router
@@ -34,10 +34,9 @@ log = logging.getLogger("gecko_vpp")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Engine is lazily created; warming it here would block, so we just leave it.
+    # Engine is created lazily on first request; nothing to warm here.
     yield
-    engine = get_engine()
-    await engine.dispose()
+    await dispose_engine()
 
 
 app = FastAPI(

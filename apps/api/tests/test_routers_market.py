@@ -15,34 +15,12 @@ Uses httpx.AsyncClient with ASGITransport — no real network.
 from __future__ import annotations
 
 import pytest
-import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
 
-import gecko_vpp.db as _db
 from gecko_vpp.config import get_settings
 from gecko_vpp.main import app
 
 pytestmark = pytest.mark.asyncio
-
-
-@pytest_asyncio.fixture(autouse=True)
-async def _reset_engine_between_tests():
-    """Dispose and reset the global async engine after each test.
-
-    pytest-asyncio creates a fresh event loop per test (function scope).
-    The cached AsyncEngine + connection pool from the previous test are
-    bound to the now-closed loop → asyncpg crashes with
-    'NoneType has no attribute send'. We dispose & null the singletons
-    so the next test gets a fresh engine on its own loop.
-    """
-    yield
-    if _db._engine is not None:
-        try:
-            await _db._engine.dispose()
-        except Exception:
-            pass
-    _db._engine = None
-    _db._session_factory = None
 
 
 settings = get_settings()

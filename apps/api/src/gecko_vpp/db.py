@@ -63,3 +63,20 @@ async def get_session() -> AsyncIterator[AsyncSession]:
         except Exception:
             await session.rollback()
             raise
+
+
+async def dispose_engine() -> None:
+    """Dispose the engine and clear the module-level singletons.
+
+    Used by FastAPI lifespan on shutdown and by the test suite between
+    runs that change event-loop scope. Safe to call when nothing is
+    cached.
+    """
+    global _engine, _session_factory
+    if _engine is not None:
+        try:
+            await _engine.dispose()
+        except Exception:
+            pass
+    _engine = None
+    _session_factory = None

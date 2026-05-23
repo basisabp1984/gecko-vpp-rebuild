@@ -16,27 +16,12 @@ from __future__ import annotations
 from decimal import Decimal
 
 import pytest
-import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
 
-import gecko_vpp.db as _db
 from gecko_vpp.config import get_settings
 from gecko_vpp.main import app
 
 pytestmark = pytest.mark.asyncio
-
-
-@pytest_asyncio.fixture(autouse=True)
-async def _reset_engine_between_tests():
-    """Reset global async engine after each test (function-scoped event loop)."""
-    yield
-    if _db._engine is not None:
-        try:
-            await _db._engine.dispose()
-        except Exception:
-            pass
-    _db._engine = None
-    _db._session_factory = None
 
 
 settings = get_settings()
