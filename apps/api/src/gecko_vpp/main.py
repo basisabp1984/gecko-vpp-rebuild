@@ -57,6 +57,7 @@ _settings = get_settings()
 _cors_origins = [
     "http://localhost:3000",
     "https://gecko.radai-1984.dev",
+    "https://krytsia.radai-1984.dev",
 ]
 # Allow extra origins from .env if provided.
 if _settings.cors_origins:
