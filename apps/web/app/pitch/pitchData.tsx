@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import {
   Activity,
+  ArrowRight,
   Battery,
   BookOpen,
   Building2,
@@ -18,13 +19,21 @@ import {
   Zap,
 } from "lucide-react";
 
+export interface PitchNav {
+  goNext: () => void;
+  goPrev: () => void;
+  goTo: (n: number) => void;
+  index: number;
+  total: number;
+}
+
 export interface PitchSlide {
   /** Used for aria-labels on dot navigation. */
   title: string;
   /** Tailwind classes applied to the slide background layer. */
   bgClass: string;
-  /** Renders the slide body. Each slide is responsible for its own layout. */
-  render: () => ReactNode;
+  /** Renders the slide body. Receives nav helpers so slides can wire their own CTAs. */
+  render: (nav: PitchNav) => ReactNode;
 }
 
 const Eyebrow = ({ children }: { children: ReactNode }) => (
@@ -78,7 +87,7 @@ export const PITCH_SLIDES: PitchSlide[] = [
     title: "Krytsia · титульний",
     bgClass:
       "bg-gradient-to-br from-bg-page via-bg-page to-accent-subtle/40",
-    render: () => (
+    render: (nav) => (
       <div className="text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-bg-card border border-border text-xs sm:text-sm font-semibold uppercase tracking-widest text-accent-deep">
           <Sparkles size={14} />
@@ -92,11 +101,19 @@ export const PITCH_SLIDES: PitchSlide[] = [
           <br className="hidden sm:block" />
           Що це таке, навіщо це вам — і що ми вже вміємо.
         </p>
-        <div className="mt-14 inline-flex items-center gap-3 text-sm text-text-muted">
-          <kbd className="px-2.5 py-1.5 rounded-lg border border-border bg-bg-card font-mono text-xs shadow-card">
-            →
-          </kbd>
-          <span>Натисніть стрілку, щоб почати</span>
+        <button
+          type="button"
+          onClick={nav.goNext}
+          className="group mt-14 inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-accent text-text-inverse text-base sm:text-lg font-semibold shadow-card hover:bg-accent-deep transition-colors cursor-pointer"
+        >
+          Почати презентацію
+          <ArrowRight
+            size={22}
+            className="group-hover:translate-x-1 transition-transform"
+          />
+        </button>
+        <div className="mt-4 text-xs text-text-muted">
+          або стрілки ← → на клавіатурі
         </div>
       </div>
     ),

@@ -123,7 +123,7 @@ export default function PitchPage() {
               transition={{ duration: 0.4, ease: "easeOut" }}
               className="w-full max-w-5xl"
             >
-              {current.render()}
+              {current.render({ goNext, goPrev, goTo, index, total })}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -165,18 +165,20 @@ export default function PitchPage() {
             type="button"
             onClick={goPrev}
             disabled={index === 0}
-            className="p-2.5 rounded-xl border border-border bg-bg-card disabled:opacity-30 disabled:cursor-not-allowed hover:border-accent hover:text-accent-deep transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border bg-bg-card disabled:opacity-30 disabled:cursor-not-allowed hover:border-accent hover:text-accent-deep transition-colors text-sm font-medium"
             aria-label="Попередній слайд"
           >
             <ArrowLeft size={16} />
+            <span className="hidden sm:inline">Назад</span>
           </button>
           <button
             type="button"
             onClick={goNext}
             disabled={index === total - 1}
-            className="p-2.5 rounded-xl bg-accent text-text-inverse disabled:opacity-30 disabled:cursor-not-allowed hover:bg-accent-deep transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-text-inverse disabled:opacity-30 disabled:cursor-not-allowed hover:bg-accent-deep transition-colors text-sm font-semibold shadow-card"
             aria-label="Наступний слайд"
           >
+            <span>Далі</span>
             <ArrowRight size={16} />
           </button>
         </div>
