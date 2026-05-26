@@ -11,6 +11,7 @@ import { AgentChat } from "./AgentChat";
 import { VoiceButton } from "./VoiceButton";
 import { ThemeToggle } from "./ThemeToggle";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { TourButton } from "./TourButton";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const t = useTranslations("footer");
@@ -25,6 +26,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <CommandPaletteTrigger />
           <TenantSwitcher />
           <div className="flex items-center gap-1">
+            <TourButton />
             <LocaleSwitcher />
             <AlertsBell />
             <VoiceButton />

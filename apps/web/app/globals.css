@@ -65,3 +65,152 @@ html[data-theme="dark"] body {
     animation: none;
   }
 }
+
+/* === Покроковий навчальний тур === */
+/* Адаптовано з ses.radai-1984.dev для збереження візуальної узгодженості */
+
+.kr-tour-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 18, 32, 0.62);
+  z-index: 9998;
+  animation: krTourFade 0.18s ease-out;
+  backdrop-filter: blur(2px);
+}
+@keyframes krTourFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.kr-tour-highlight {
+  position: relative;
+  z-index: 9999;
+  outline: 3px solid var(--color-accent-light);
+  outline-offset: 6px;
+  border-radius: 12px;
+  box-shadow: 0 0 0 9999px rgba(7, 18, 32, 0.62),
+              0 0 32px rgba(45, 212, 191, 0.45);
+  transition: outline-color 0.2s;
+}
+.kr-tour-highlight-soft {
+  position: relative;
+  z-index: 9999;
+  outline: 3px solid var(--color-accent-light);
+  outline-offset: 6px;
+  border-radius: 12px;
+  background: rgba(45, 212, 191, 0.12) !important;
+}
+
+.kr-tour-bubble {
+  position: fixed;
+  z-index: 10000;
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-accent-deep);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(7, 18, 32, 0.55);
+  padding: 18px 20px 16px;
+  max-width: 440px;
+  min-width: 300px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-text-body);
+  animation: krTourBubble 0.22s ease-out;
+}
+@keyframes krTourBubble {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.kr-tour-bubble-progress {
+  font-size: 11.5px;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+.kr-tour-bubble-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  margin: 0 0 8px;
+}
+.kr-tour-bubble-text {
+  margin: 0 0 14px;
+  color: var(--color-text-body);
+}
+.kr-tour-bubble-text b,
+.kr-tour-bubble-text strong {
+  color: var(--color-accent-deep);
+}
+.kr-tour-bubble-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.kr-tour-bubble-skip {
+  background: transparent;
+  border: 0;
+  color: var(--color-text-muted);
+  font-size: 12.5px;
+  cursor: pointer;
+  padding: 4px 6px;
+  text-decoration: underline;
+  font-family: inherit;
+}
+.kr-tour-bubble-skip:hover {
+  color: var(--color-accent-deep);
+}
+.kr-tour-bubble-nav {
+  display: flex;
+  gap: 8px;
+}
+.kr-tour-bubble-nav button {
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-page);
+  color: var(--color-text-body);
+  font-family: inherit;
+  font-weight: 500;
+  transition: background 0.12s;
+}
+.kr-tour-bubble-nav button:hover { background: var(--color-bg-card); }
+.kr-tour-bubble-nav button.kr-tour-next {
+  background: var(--color-accent-deep);
+  color: var(--color-text-inverse);
+  border-color: var(--color-accent-deep);
+  font-weight: 600;
+}
+.kr-tour-bubble-nav button.kr-tour-next:hover {
+  background: var(--color-accent-light);
+  border-color: var(--color-accent-light);
+}
+.kr-tour-bubble-nav button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.kr-tour-bubble::before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-accent-deep);
+  transform: rotate(45deg);
+}
+.kr-tour-bubble.kr-arrow-up::before    { top: -9px; left: 28px; border-right: 0; border-bottom: 0; }
+.kr-tour-bubble.kr-arrow-down::before  { bottom: -9px; left: 28px; border-left: 0; border-top: 0; }
+.kr-tour-bubble.kr-arrow-left::before  { left: -9px; top: 22px; border-right: 0; border-top: 0; }
+.kr-tour-bubble.kr-arrow-right::before { right: -9px; top: 22px; border-left: 0; border-bottom: 0; }
+.kr-tour-bubble.kr-arrow-none::before  { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .kr-tour-backdrop,
+  .kr-tour-bubble {
+    animation: none;
+  }
+}

@@ -15,6 +15,8 @@ import { KPITile } from "@/components/KPITile";
 import { HourlyChart, type HourlyPoint } from "@/components/HourlyChart";
 import { OptimiseModal } from "@/components/OptimiseModal";
 import { PersonaAIHelper } from "@/components/PersonaAIHelper";
+import { Tour } from "@/components/Tour";
+import { PRODUCER_TOUR_STEPS } from "./tourSteps";
 import {
   formatUAHCompact,
   formatPercent,
@@ -108,7 +110,7 @@ export default function ProducerHomePage() {
     <div className="flex flex-col gap-6">
       {/* Header */}
       <header className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-        <div>
+        <div data-tour="welcome">
           <h1 className="text-2xl sm:text-3xl font-bold text-text-heading">
             Кабінет виробника
           </h1>
@@ -116,13 +118,20 @@ export default function ProducerHomePage() {
             Результати за тиждень · станом на {formatDate(new Date())}
           </p>
         </div>
-        <OptimiseModal date={date} scenario="arbitrage" />
+        <div data-tour="optimise">
+          <OptimiseModal date={date} scenario="arbitrage" />
+        </div>
       </header>
 
-      <PersonaAIHelper persona="dispatcher_analyst" />
+      <div data-tour="ai-helper">
+        <PersonaAIHelper persona="dispatcher_analyst" />
+      </div>
 
       {/* KPI grid */}
-      <section className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3">
+      <section
+        data-tour="kpi-grid"
+        className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3"
+      >
         <KPITile
           label="Грн зароблено"
           value={formatUAHCompact(k?.grn_earned_uah)}
@@ -173,7 +182,10 @@ export default function ProducerHomePage() {
 
       {/* Main chart + alerts */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-2 rounded-xl border border-border bg-bg-card p-4 shadow-card">
+        <div
+          data-tour="rdn-chart"
+          className="lg:col-span-2 rounded-xl border border-border bg-bg-card p-4 shadow-card"
+        >
           <div className="flex items-center justify-between mb-3">
             <div>
               <h2 className="text-base font-semibold text-text-heading">
@@ -197,7 +209,10 @@ export default function ProducerHomePage() {
           )}
         </div>
 
-        <aside className="rounded-xl border border-border bg-bg-card p-4 shadow-card">
+        <aside
+          data-tour="alerts"
+          className="rounded-xl border border-border bg-bg-card p-4 shadow-card"
+        >
           <h2 className="text-base font-semibold text-text-heading mb-3 flex items-center gap-2">
             <AlertTriangle size={16} className="text-warning" />
             Регуляторні події
@@ -232,6 +247,11 @@ export default function ProducerHomePage() {
           )}
         </aside>
       </section>
+
+      <Tour
+        steps={PRODUCER_TOUR_STEPS}
+        storageKey="kr_tour_producer_seen_v1"
+      />
     </div>
   );
 }
