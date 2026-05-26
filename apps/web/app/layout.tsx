@@ -7,7 +7,7 @@ import "./globals.css";
 import { Suspense } from "react";
 import { Providers } from "./providers";
 import { AppShell } from "@/components/AppShell";
-import { VisitNotifier } from "@/components/VisitNotifier";
+// VisitNotifier тимчасово вимкнено — пуші в @krytsia_visits_bot задовбали власника.
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -63,9 +63,6 @@ export default async function RootLayout({
             <AppShell>{children}</AppShell>
           </Providers>
         </NextIntlClientProvider>
-        <Suspense fallback={null}>
-          <VisitNotifier />
-        </Suspense>
         {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
       </body>
     </html>
