@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 import { KrytsiaLogo } from "./KrytsiaLogo";
 import { TenantSwitcher } from "./TenantSwitcher";
 import { PersonaSwitcher } from "./PersonaSwitcher";
@@ -13,8 +14,18 @@ import { ThemeToggle } from "./ThemeToggle";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { TourButton } from "./TourButton";
 
+// Routes that render their own full-bleed chrome (no header/footer/AgentChat).
+const CHROMELESS_PREFIXES = ["/pitch"];
+
 export function AppShell({ children }: { children: ReactNode }) {
   const t = useTranslations("footer");
+  const pathname = usePathname() ?? "";
+  const isChromeless = CHROMELESS_PREFIXES.some(
+    (p) => pathname === p || pathname.startsWith(`${p}/`),
+  );
+  if (isChromeless) {
+    return <>{children}</>;
+  }
   return (
     <div className="min-h-screen flex flex-col">
       <header className="sticky top-0 z-40 border-b border-border bg-bg-card/90 backdrop-blur">
